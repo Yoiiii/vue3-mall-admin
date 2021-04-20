@@ -1,7 +1,7 @@
  import axios from './axios'
 
  export function login(data){
-  axios.post('api/adminUser/login',data).then(res=>{
+  axios.post('/adminUser/login',data).then(res=>{
     return res.data
   })
  }

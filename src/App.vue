@@ -67,11 +67,11 @@ export default {
       if(to.path=='/login'){
         next()
       }else{
-        if(!localGet('token')){
-          next({path:'/login'})
-        }else{
+        // if(!localGet('token')){
+        //   next({path:'/login'})
+        // }else{
           next()
-        }
+        // }
       }
       if(to.meta.showMenu===false){
         state.showMenu=false

@@ -19,7 +19,6 @@ export default {
       name:''
     })
     router.afterEach((to)=>{
-      console.log(to);
       state.name = to.meta.title
     })
 
