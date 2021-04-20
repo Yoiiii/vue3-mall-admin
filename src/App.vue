@@ -49,6 +49,7 @@
 import {reactive,toRefs} from 'vue'
 import {useRouter} from 'vue-router'
 import {localGet} from '@/utils'
+
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 export default {
@@ -67,7 +68,7 @@ export default {
         next()
       }else{
         if(!localGet('token')){
-          next({paht:'/login'})
+          next({path:'/login'})
         }else{
           next()
         }

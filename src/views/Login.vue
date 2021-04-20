@@ -36,6 +36,7 @@ import axios from '@/utils/axios'
 import md5 from 'js-md5'
 import {reactive,ref,toRefs} from 'vue';
 import {localSet} from '@/utils'
+import {login} from '@/utils/api';
 export default {
   name:'Login',
   setup(){
@@ -57,15 +58,16 @@ export default {
     })
     //提交方法
     const submitForm = async()=>{
-      loginForm.value.validate(valid=>{
+      loginForm.value.validate(async valid=>{
         if(valid){
-          axios.post('/adminUser/login',{
+          const response =await login({
             username:state.ruleForm.username || '',
             passwordMd5:md5(state.ruleForm.password),
-          }).then(res=>{
+          })
+          if(response){
             localSet('token',res)
             window.location.href="/"
-          })
+          }
         }else{
           return false
         }
