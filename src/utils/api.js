@@ -2,6 +2,7 @@
 
  export function login(data){
   axios.post('/adminUser/login',data).then(res=>{
-    return res.data
+    console.log(res);
+    return res
   })
  }

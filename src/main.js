@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from '@/router/index.js'
+import {store} from '@/store/index.js'
 import 
   { 
     ElButton,
@@ -22,6 +23,7 @@ import '~/theme/index.css'
 const app = createApp(App)
 
 app.use(router)
+app.use(store)
 
 //element组件引入
 app.use(ElButton)

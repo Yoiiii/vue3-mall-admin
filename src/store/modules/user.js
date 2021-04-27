@@ -1,13 +1,53 @@
-const state = {
-  token:getToken()
-}
+import { login } from '@/utils/api.js'
 
-const mutations ={
-  SET_TOKEN:(state,token)=>{
-    tate.token=token
+let state = {
+  username: 'admin',
+  total: 0,
+  accessToken: 'admin',
+  avatar: '随意设置',
+  rolename: '随意设置',
+  userList: [{ name: 'admin', age: 29 }]
+},
+getters = {
+ accessToken: state => state.accessToken,
+  username: state => state.username,
+  rolename: state => state.rolename,
+  avatar: state => state.avatar,
+  userList: state => state.userList,
+  total: state => state.total
+},
+mutations = {
+  setAccessToken (state, accessToken) {// 设置accessToken
+       state.accessToken = accessToken
+   },
+   setUsername (state, username) {// 设置用户名
+       state.username = username
+   },
+   setRolename (state, rolename) {// 设置权限名
+       state.rolename = rolename
+   },
+   setAvatar (state, avatar) {// 设置头像
+       state.avatar = avatar
+   },
+   setUserList (state, list) {// 设置用户列表
+       state.userList = list
+   },
+   setTotal (state, total) {
+       state.total = total
+   }
+},
+actions = {
+  async login({commit},userInfo){
+    console.log(userInfo);
+    const res = await login(userInfo)
+    await console.log(res);
+    
+  },
+  testActions ({ commit }, num) {
+      setTimeout(() => {
+          commit('setTotal', num)
+          console.log(num)
+      }, 2000)
   }
-}
-
-const actions ={
-  login()
-}
+};
+export default { state, getters, mutations, actions }

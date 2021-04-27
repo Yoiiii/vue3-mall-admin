@@ -32,18 +32,20 @@
 </template>
 
 <script>
-import axios from '@/utils/axios'
 import md5 from 'js-md5'
-import {reactive,ref,toRefs} from 'vue';
+import {reactive,ref,toRefs,computed} from 'vue';
+import {useStore} from 'vuex'
 import {localSet} from '@/utils'
 import {login} from '@/utils/api';
 export default {
   name:'Login',
   setup(){
     const loginForm =ref(null)
+    let store = useStore()
+    console.log(store,store.getters.username);
     const state = reactive({
       ruleForm:{
-        username:'',
+        username:store.getters.username,
         password:''
       },
       checked:true,
@@ -60,14 +62,17 @@ export default {
     const submitForm = async()=>{
       loginForm.value.validate(async valid=>{
         if(valid){
-          const response =await login({
-            username:state.ruleForm.username || '',
+          store.dispatch('modules/user/login',{
+            userName:state.ruleForm.username || '',
             passwordMd5:md5(state.ruleForm.password),
           })
-          if(response){
-            localSet('token',res)
-            window.location.href="/"
-          }
+          // const response =await login({
+
+          // })
+          // if(response){
+          //   localSet('token',res)
+          //   window.location.href="/"
+          // }
         }else{
           return false
         }
