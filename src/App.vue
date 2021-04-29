@@ -15,6 +15,8 @@
           background-color="#222832"
           text-color="#fff"
           :router="true"
+          :default-active="currentPath"
+          :default-openeds="defaultOpen"
         >
           <!--一级栏目-->
           <el-submenu index="1">
@@ -25,6 +27,15 @@
             <el-menu-item-group>
               <el-menu-item index="/"><i class="el-icon-data-line" />首页</el-menu-item>
               <el-menu-item index="/add"><i class="el-icon-data-line" />添加商品</el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+          <el-submenu index="2">
+            <template #title>
+              <span>首页配置</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="/swiper">
+              <i class="el-icon-picture" />轮播图配置</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>
@@ -61,18 +72,23 @@ export default {
   setup(){
     const router = useRouter()
     const state = reactive({
-      showMenu:true
+      showMenu:true,
+      defaultOpen:['1','2'],
+      currentPath:'/'
     })
     router.beforeEach((to,from,next)=>{
       if(to.path=='/login'){
         next()
       }else{
-        // if(!localGet('token')){
-        //   next({path:'/login'})
-        // }else{
+        if(!localGet('token')){
+          next({path:'/login'})
+        }else{
           next()
-        // }
+        }
       }
+      state.showMenu = !noMenu.includes(to.path)
+      state.currentPath=to.path
+      document.title=pathMap[to.name]
       if(to.meta.showMenu===false){
         state.showMenu=false
       }else{

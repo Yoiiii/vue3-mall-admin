@@ -10,6 +10,7 @@ export function localGet(key){
 
 //设置本地储存
 export function localSet(key,value){
+  console.log(key,value);
   window.localStorage.setItem(key,JSON.stringify(value))
 }
 

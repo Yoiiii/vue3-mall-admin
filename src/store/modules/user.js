@@ -1,8 +1,13 @@
-import { login } from '@/utils/api.js'
+import { login,logout,getUserInfo} from '@/utils/api.js'
+import {localSet,localRemove} from '@/utils/index.js'
 
 let state = {
   username: 'admin',
   total: 0,
+  userInfo:{
+      name:111,
+      lasdf:222
+  },
   accessToken: 'admin',
   avatar: '随意设置',
   rolename: '随意设置',
@@ -10,6 +15,7 @@ let state = {
 },
 getters = {
  accessToken: state => state.accessToken,
+ userInfo:state => state.userInfo,
   username: state => state.username,
   rolename: state => state.rolename,
   avatar: state => state.avatar,
@@ -19,6 +25,9 @@ getters = {
 mutations = {
   setAccessToken (state, accessToken) {// 设置accessToken
        state.accessToken = accessToken
+   },
+   setUserInfo(state,userInfo){
+       state.userInfo=userInfo
    },
    setUsername (state, username) {// 设置用户名
        state.username = username
@@ -37,11 +46,20 @@ mutations = {
    }
 },
 actions = {
-  async login({commit},userInfo){
-    console.log(userInfo);
-    const res = await login(userInfo)
-    await console.log(res);
-    
+   async login({commit},userInfo){
+     const res = await login(userInfo)
+     localSet('token',res)
+     commit('setAccessToken',res)
+     return res
+  },
+  async getUserInfo({commit}){
+    const res = await getUserInfo()
+    commit('setUserInfo',res)
+  },
+  async logout({commit}){
+    await logout()
+    localRemove('token')
+    commit('setAccessToken','')
   },
   testActions ({ commit }, num) {
       setTimeout(() => {

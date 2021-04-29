@@ -22,7 +22,7 @@ axios.interceptors.response.use(res=>{
   if(res.data.resultCode != 200){
     if(res.data.message) ElMessage.error(res.data.message);
     if(res.data.resultCode==419){
-      //router.push({path:'/login'})
+      router.push({path:'/login'})
     }
     return Promise.reject(res.data)
   }

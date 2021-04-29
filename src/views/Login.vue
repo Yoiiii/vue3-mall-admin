@@ -42,11 +42,10 @@ export default {
   setup(){
     const loginForm =ref(null)
     let store = useStore()
-    console.log(store,store.getters.username);
     const state = reactive({
       ruleForm:{
-        username:store.getters.username,
-        password:''
+        username:store.getters['user/username'],
+        password:'123456'
       },
       checked:true,
       rules:{
@@ -60,19 +59,14 @@ export default {
     })
     //提交方法
     const submitForm = async()=>{
-      loginForm.value.validate(async valid=>{
+      loginForm.value.validate( valid=>{
         if(valid){
-          store.dispatch('modules/user/login',{
+          store.dispatch('user/login',{
             userName:state.ruleForm.username || '',
             passwordMd5:md5(state.ruleForm.password),
+          }).then(res=>{
+            window.location.href = '/'
           })
-          // const response =await login({
-
-          // })
-          // if(response){
-          //   localSet('token',res)
-          //   window.location.href="/"
-          // }
         }else{
           return false
         }

@@ -14,7 +14,14 @@ import
     ElForm,
     ElFormItem,
     ElInput,
-    ElCheckbox
+    ElCheckbox,
+    ElPopover,
+    ElTag,
+    ElCard,
+    ElTable,
+    ElUpload,
+    ElDialog,
+    ElPagination
   } from 'element-plus'
 
 //主题引入
@@ -37,7 +44,13 @@ app.use(ElForm)
 app.use(ElFormItem)
 app.use(ElInput)
 app.use(ElCheckbox)
-
+app.use(ElPopover)
+app.use(ElTag)
+app.use(ElCard)
+app.use(ElTable)
+app.use(ElUpload)
+app.use(ElDialog)
+app.use(ElPagination)
 
 
 app.mount('#app')
