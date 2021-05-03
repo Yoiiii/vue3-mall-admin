@@ -35,8 +35,6 @@
 import md5 from 'js-md5'
 import {reactive,ref,toRefs,computed} from 'vue';
 import {useStore} from 'vuex'
-import {localSet} from '@/utils'
-import {login} from '@/utils/api';
 export default {
   name:'Login',
   setup(){

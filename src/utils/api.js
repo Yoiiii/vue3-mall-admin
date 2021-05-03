@@ -11,3 +11,12 @@
  export function getUserInfo(){
    return axios.get('/adminUser/profile')
  }
+
+ export function getCarousels(currentPage,pageSize){
+   return axios.get('/carousels',{
+     params:{
+       pageNumber:currentPage,
+       pageSize:pageSize
+     }
+   })
+ }

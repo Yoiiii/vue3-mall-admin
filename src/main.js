@@ -21,7 +21,8 @@ import
     ElTable,
     ElUpload,
     ElDialog,
-    ElPagination
+    ElPagination,
+    ElTableColumn
   } from 'element-plus'
 
 //主题引入
@@ -51,6 +52,8 @@ app.use(ElTable)
 app.use(ElUpload)
 app.use(ElDialog)
 app.use(ElPagination)
+app.use(ElTableColumn)
+
 
 
 app.mount('#app')
