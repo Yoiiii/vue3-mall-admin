@@ -26,8 +26,9 @@
         <div class="item">20%</div>
       </el-card>
     </div>
+     <div id="zoom"></div>
   </el-card>
-  <div id="zoom"></div>
+ 
 </template> 
 <script>
 const ENV = import.meta.env

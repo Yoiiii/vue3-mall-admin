@@ -20,3 +20,24 @@
      }
    })
  }
+
+ export function getCarouselsDetail(id){
+   return axios.get(`/carousels/${id}`)
+ }
+
+ export function addCarousels(carouselUrl,redirectUrl,carouselRank){
+   return axios.post('/carousels',{
+     carouselUrl,
+     redirectUrl,
+     carouselRank
+   })
+ }
+ 
+ export function editCarousels(carouselId,carouselUrl,redirectUrl,carouselRank){
+   return axios.put('/carousels',{
+     carouselId,
+     carouselUrl,
+     redirectUrl,
+     carouselRank
+   })
+ }

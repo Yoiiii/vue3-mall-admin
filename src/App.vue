@@ -76,6 +76,7 @@ export default {
       defaultOpen:['1','2'],
       currentPath:'/'
     })
+    const noMenu = ['/login']
     router.beforeEach((to,from,next)=>{
       if(to.path=='/login'){
         next()
@@ -89,11 +90,6 @@ export default {
       state.showMenu = !noMenu.includes(to.path)
       state.currentPath=to.path
       document.title=pathMap[to.name]
-      if(to.meta.showMenu===false){
-        state.showMenu=false
-      }else{
-        state.showMenu=true
-      }
     })
     return {
       ...toRefs(state)
