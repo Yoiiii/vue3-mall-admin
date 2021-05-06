@@ -3,6 +3,7 @@ import Index from '@/views/Index.vue'
 import AddGood from '@/views/AddGood.vue'
 import Login from '@/views/Login.vue'
 import Swiper  from '@/views/Swiper.vue'
+import IndexConfig from '@/views/IndexConfig.vue'
 
 
 const router =createRouter({
@@ -31,6 +32,30 @@ const router =createRouter({
         title:"首页轮播图"
       },
       component:Swiper
+    },
+    {
+      path:'/hot',
+      name:'hot',
+      meta:{
+        title:"热销商品"
+      },
+      component:IndexConfig
+    },
+    {
+      path:'/new',
+      name:'new',
+      meta:{
+        title:"新品上线"
+      },
+      component:IndexConfig
+    },
+    {
+      path:'/recommend',
+      name:'recommend',
+      meta:{
+        title:"为你推荐"
+      },
+      component:IndexConfig
     },
     {
       path:'/login',

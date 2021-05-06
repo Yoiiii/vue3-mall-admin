@@ -1,3 +1,4 @@
+import config from '~/config'
 //获取本地储存
 export function localGet(key){
   const value = window.localStorage.getItem(key)
@@ -18,3 +19,6 @@ export function localSet(key,value){
 export function localRemove(key){
   window.localStorage.removeItem(key)
 }
+
+// 单张图片上传
+export const uploadImgServer = config[import.meta.env.MODE].uploadImgServer

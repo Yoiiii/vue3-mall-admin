@@ -12,14 +12,14 @@
       <template #reference>
         <el-button type="danger" size="small" icon="el-icon-delete">批量删除</el-button>
       </template>
-      </el-popconfirm>
-      
+    </el-popconfirm>
     </div>
     <el-table
       :v-loading="loading"
       :data="tableData"
       tooltip-effect="dark"
       style="width:100%"
+      @selection-change="handleSelectionChange"
     >
       <el-table-column
         type="selection"
@@ -53,13 +53,23 @@
       >
       </el-table-column> 
     </el-table>
+    <el-pagination
+      background
+      layout="prev,pager,next"
+      :total="total"
+      :page-size="pageSize"
+      :current-page="currentPage"
+      @current-change="changePage"
+     />
   </el-card>
+  <DialogAddSwiper ref='addSwiper' :reload="getCarouselsList" :type="type"/>
 </template>
 
 <script>
 import {onMounted,reactive,ref,toRefs} from 'vue'
-import {getCarousels} from '@/utils/api.js'
+import {getCarousels,deleteCarousels} from '@/utils/api.js'
 import DialogAddSwiper from '@/components/DialogAddSwiper.vue'
+import { ElMessage } from 'element-plus'
 export default {
   name:'Swiper',
   components:{
@@ -72,10 +82,12 @@ export default {
       tableData:[],
       currentPage:1,
       pageSize:10,
-      type:'add'
+      type:'add',
+      total:0,
+      multipleSelection:[]
     })
     onMounted(()=>{
-      getCarousel()
+      getCarouselsList()
     })
     const handleAdd=()=>{
       state.type='add'
@@ -85,20 +97,44 @@ export default {
       state.type='edit'
       addSwiper.value.open(id)
     }
-    const getCarousel = () => {
+    const getCarouselsList = () => {
       state.loading = true
       getCarousels(state.currentPage,state.pageSize)
       .then(res => {
         state.tableData = res.list
         state.loading = false
+        state.currentPage=res.currPage
+        state.total=res.totalCount
       })
+    }
+    const handleSelectionChange=(val)=>{
+      state.multipleSelection=val
+      console.log(val);
+    }
+    const handleDelete = ()=>{
+      if(!state.multipleSelection.length){
+        ElMessage.error('请选择项')
+        return
+      }
+      let deletelist = state.multipleSelection.map(i=>i.carouselId)
+      deleteCarousels(deletelist).then(()=>{
+        ElMessage.success('删除成功')
+        getCarouselsList()
+      })
+    }
+    const changePage =(val)=>{
+      state.currentPage =val
+      getCarouselsList()
     }
     return {
       ...toRefs(state),
       addSwiper,
       handleAdd,
       handleEdit,
-      getCarousels
+      handleSelectionChange,
+      handleDelete,
+      changePage,
+      getCarouselsList
     }
   }
 }

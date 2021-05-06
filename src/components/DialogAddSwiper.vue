@@ -1,16 +1,16 @@
 <template>
-  <el-dialog
+      <el-dialog
     :title="type == 'add' ? '添加轮播图' : '修改轮播图'"
-    v-modul="visible"
+    v-model="visible"
     width="400px"
   >
-    <el-form
+  <el-form
       :model="ruleForm"
       :rules="rules"
       ref="formRef"
       label-width="100px"
       class="good-form"
-    ></el-form>
+  >
     <el-form-item label="图片" prop="url">
       <el-upload
         class="avatar-uploader"
@@ -32,13 +32,14 @@
         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
       </el-upload>
     </el-form-item>
-    <el-form-item label="跳转链接" prop="link">
-      <el-input type="text" v-model="ruleFrom.link"></el-input>
+     <el-form-item label="跳转链接" prop="link">
+      <el-input type="text" v-model="ruleForm.link"></el-input>
     </el-form-item>
     <el-form-item label="排序值" prop="sort">
       <el-input type="number" v-model="ruleForm.sort"></el-input>
     </el-form-item>
-    <template #footer>
+  </el-form>
+      <template #footer>
       <span class="dialog-footer">
         <el-button @click="visible = false">取消</el-button>
         <el-button type="primary" @click="submitForm">确定</el-button>
@@ -47,9 +48,10 @@
   </el-dialog>
 </template>  
 
+
 <script>
 import { reactive, ref, toRefs } from "vue";
-import { localGet } from "@/utils/index.js";
+import { localGet ,uploadImgServer} from "@/utils/index.js";
 import { ElMessage } from "element-plus";
 import {
   getCarouselsDetail,
@@ -119,7 +121,7 @@ export default {
     };
 
     const submitForm = () => {
-      console.log(formRef.vale.validate);
+      console.log(formRef.value.validate);
       formRef.value.validate((valid) => {
         if (valid) {
           const { url, link, sort } = state.ruleForm;

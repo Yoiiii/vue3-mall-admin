@@ -41,3 +41,11 @@
      carouselRank
    })
  }
+
+ export function deleteCarousels(ids){
+   return axios.delete('/carousels',{
+     data:{
+       ids
+     }
+   })
+ }

@@ -22,7 +22,8 @@ import
     ElUpload,
     ElDialog,
     ElPagination,
-    ElTableColumn
+    ElTableColumn,
+    ElPopconfirm
   } from 'element-plus'
 
 //主题引入
@@ -53,6 +54,9 @@ app.use(ElUpload)
 app.use(ElDialog)
 app.use(ElPagination)
 app.use(ElTableColumn)
+app.use(ElPopconfirm)
+
+
 
 
 
