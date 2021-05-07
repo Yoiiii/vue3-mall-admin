@@ -4,6 +4,7 @@ import AddGood from '@/views/AddGood.vue'
 import Login from '@/views/Login.vue'
 import Swiper  from '@/views/Swiper.vue'
 import IndexConfig from '@/views/IndexConfig.vue'
+import Category from '@/views/Category.vue'
 
 
 const router =createRouter({
@@ -56,6 +57,32 @@ const router =createRouter({
         title:"为你推荐"
       },
       component:IndexConfig
+    },
+    {
+      path:'/category',
+      name:'category',
+      meta:{
+        title:"分类管理"
+      },
+      component:Category,
+      children:[
+        {
+          path:'/category/level2',
+          name:'level2',
+          component:Category,
+          meta:{
+            title:"分类二级管理"
+          },
+        },
+        {
+          path:'/category/level3',
+          name:'level3',
+          component:Category,
+          meta:{
+            title:"分类三级管理"
+          },
+        }
+      ]
     },
     {
       path:'/login',

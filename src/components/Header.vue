@@ -1,6 +1,7 @@
 <template>
   <div class="header">
     <div class="left">
+      <i v-if="hasBack" class="el-icon-back" style="margin-right:10px" @click="back"></i>
       <span style="font-size: 20px">{{name}}</span>
     </div>
     <div class="right">
@@ -43,7 +44,8 @@ export default {
     const store = useStore()
     const state =reactive({
       name:'dashboard',
-      userInfo:null
+      userInfo:null,
+      hasBack:false
     })
     
     onMounted(()=>{
@@ -61,11 +63,19 @@ export default {
       router.push({path:'/login'})
     }
     router.afterEach((to)=>{
+      const {id} =to.query
       state.name = to.meta.title
+      console.log(to.name);
+      state.hasBack=['level2','level3'].includes(to.name)
     })
+
+    const back =()=>{
+      router.back()
+    }
     return {
       ...toRefs(state),
-      logout
+      logout,
+      back
     }
   }
 }

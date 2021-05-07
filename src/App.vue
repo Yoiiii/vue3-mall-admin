@@ -40,6 +40,16 @@
               <el-menu-item index="/recommend"><i class="el-icon-thumb" />为你推荐配置</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
+          <el-submenu index="3">
+            <template #title>
+              <span>模块管理</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="/category">
+                <i class="el-icon-menu"></i>分类管理
+              </el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
         </el-menu>
       </el-aside>
       <el-container class="content">
@@ -75,7 +85,7 @@ export default {
     const router = useRouter()
     const state = reactive({
       showMenu:true,
-      defaultOpen:['1','2'],
+      defaultOpen:['1','2','3'],
       currentPath:'/'
     })
     const noMenu = ['/login']
