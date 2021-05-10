@@ -113,7 +113,7 @@ export default {
       submitForm,
       close,
       open,
-      formRef
+      formRef 
     }
   }
 }

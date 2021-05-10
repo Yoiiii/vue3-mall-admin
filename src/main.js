@@ -23,12 +23,16 @@ import
     ElDialog,
     ElPagination,
     ElTableColumn,
-    ElPopconfirm
+    ElPopconfirm,
+    ElCascader,
+    ElRadioGroup,
+    ElRadio
   } from 'element-plus'
 
 //主题引入
 import '~/theme/index.css'
-
+import { routeLocationKey } from 'vue-router'
+import config from '~/config'
 const app = createApp(App)
 
 app.use(router)
@@ -55,10 +59,26 @@ app.use(ElDialog)
 app.use(ElPagination)
 app.use(ElTableColumn)
 app.use(ElPopconfirm)
+app.use(ElCascader)
+app.use(ElRadioGroup)
+app.use(ElRadio)
 
 
+app.config.globalProperties.$filters={
+  prefix(url){
+    if(url && url.startsWith('http')){
+      return url
+    }else{
+      url=config[import.meta.env.MODE].baseUrl+rul
+      return url
+    }
+  }
+}
 
-
+app.config.globalProperties.goTop =function(){
+  const main = document.querySelector('.main')
+  main.scrollTop=0
+}
 
 app.mount('#app')
 

@@ -10,7 +10,7 @@
           @confirm="handleDelete"
           >
           <template #reference>
-            <el-button type="danger" size="small" icon="el-icon-delete">批量</el-button>
+            <el-button type="danger" size="small" icon="el-icon-delete">批量删除</el-button>
           </template>
           </el-popconfirm>
       </div>
@@ -68,7 +68,7 @@
       @currnet-change="changePage"
     ></el-pagination>
   </el-card>
-  <DialogAddCategory ref="addCate" :reload="getCategory" :type="type"/>
+  <DialogAddCategroy ref="addCate" :reload="getCategory" :type="type"/>
 </template>
 
 <script>
@@ -76,7 +76,7 @@ import {onMounted,onUnmounted,reactive,ref,toRefs} from 'vue'
 import {useRoute,useRouter} from 'vue-router'
 import {ElMessage} from 'element-plus'
 import {getCategories,deleteCategories} from '@/utils/api';
-import DialogAddCategory from '@/components/DialogAddCategory.vue'
+import DialogAddCategory from '@/components/DialogAddCategroy.vue'
 export default {
   name:'Category',
   components:{
@@ -180,7 +180,7 @@ export default {
       getCategory,
       changePage,
       handleSelectionChange,
-      handleNext
+      handleNext 
     }
   }
 }

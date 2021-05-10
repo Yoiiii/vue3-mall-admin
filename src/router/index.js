@@ -5,6 +5,7 @@ import Login from '@/views/Login.vue'
 import Swiper  from '@/views/Swiper.vue'
 import IndexConfig from '@/views/IndexConfig.vue'
 import Category from '@/views/Category.vue'
+import Good from '@/views/good.vue'
 
 
 const router =createRouter({
@@ -17,6 +18,14 @@ const router =createRouter({
         title:"首页"
       },
       component:Index
+    },
+    {
+      path:'/good',
+      name:'good',
+      meta:{
+        title:'商品管理'
+      },
+      component:Good
     },
     {
       path:'/add',

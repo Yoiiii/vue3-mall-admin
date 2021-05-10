@@ -132,3 +132,22 @@
      }
    })
  }
+
+ export function getGoodsList(pageNumber,pageSize){
+   return axios.get('/goods/list',{
+     params:{
+       pageNumber,
+       pageSize
+     }
+   })
+ }
+ 
+ export function editGoodStatus(id,status){
+   return axios.put(`/goods/status/${status}`,{
+     ids:id ? [id]:[]
+   })
+ }
+
+ export function getGoodsDetail(id){
+   return axios.get(`/goods/${id}`)
+ }
