@@ -5,7 +5,10 @@ import Login from '@/views/Login.vue'
 import Swiper  from '@/views/Swiper.vue'
 import IndexConfig from '@/views/IndexConfig.vue'
 import Category from '@/views/Category.vue'
-import Good from '@/views/good.vue'
+import Good from '@/views/Good.vue'
+import Order from '@/views/Order.vue'
+import OrderDetail from '@/views/OrderDetail.vue'
+import Guest from '@/views/Guest.vue'
 
 
 const router =createRouter({
@@ -26,6 +29,30 @@ const router =createRouter({
         title:'商品管理'
       },
       component:Good
+    },
+    {
+      path:'/order',
+      name:'order',
+      meta:{
+        title:'订单管理'
+      },
+      component:Order
+    },
+    {
+      path:'/order_detail',
+      name:'order_detail',
+      meta:{
+        title:'订单详情'
+      },
+      component:OrderDetail
+    },
+    {
+      path:'/guest',
+      name:'guest',
+      meta:{
+        title:'会员管理'
+      },
+      component:Guest
     },
     {
       path:'/add',

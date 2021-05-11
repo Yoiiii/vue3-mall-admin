@@ -26,7 +26,9 @@ import
     ElPopconfirm,
     ElCascader,
     ElRadioGroup,
-    ElRadio
+    ElRadio,
+    ElSelect,
+    ElOption
   } from 'element-plus'
 
 //主题引入
@@ -62,23 +64,43 @@ app.use(ElPopconfirm)
 app.use(ElCascader)
 app.use(ElRadioGroup)
 app.use(ElRadio)
+app.use(ElSelect)
+app.use(ElOption)
 
+
+const orderStatus={
+  0:'待支付',
+  1:'已支付',
+  2:'配货完成',
+  3:'出库成功',
+  4:'交易成功',
+  '-1':'手动关闭',
+  '-2':'超时关闭',
+  '-3':'商家关闭'
+}
 
 app.config.globalProperties.$filters={
   prefix(url){
     if(url && url.startsWith('http')){
       return url
     }else{
-      url=config[import.meta.env.MODE].baseUrl+rul
+      url=config[import.meta.env.MODE].baseUrl+url
       return url
     }
-  }
+  },
+  orderMap(status){
+    return orderStatus[status] ||'未知状态'
+  },
 }
 
 app.config.globalProperties.goTop =function(){
   const main = document.querySelector('.main')
   main.scrollTop=0
 }
+
+
+
+
 
 app.mount('#app')
 

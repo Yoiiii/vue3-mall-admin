@@ -22,3 +22,4 @@ export function localRemove(key){
 
 // 单张图片上传
 export const uploadImgServer = config[import.meta.env.MODE].uploadImgServer
+export const uploadImgsServer = config[import.meta.env.MODE].uploadImgServer+'s'
