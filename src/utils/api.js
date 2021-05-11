@@ -151,3 +151,53 @@
  export function getGoodsDetail(id){
    return axios.get(`/goods/${id}`)
  }
+
+ export function addGood(goodsCategoryId,goodsCoverImg,goodsDetailContent,goodsIntro,goodsName,goodsSellStatus,goodsSellingPrice,originalPrice,stockNum,tag){
+   return axios.post('/goods',{
+    goodsCategoryId,
+    goodsCoverImg,
+    goodsDetailContent,
+    goodsIntro,
+    goodsName,
+    goodsSellStatus,
+    goodsSellingPrice,
+    originalPrice,
+    stockNum,
+    tag
+   })
+ }
+
+ export function getOrdersList(pageNumber,pageSize,orderNo,orderStatus){
+   return axios.get('/orders',{
+     params:{
+       pageNumber,
+       pageSize,
+       orderNo,
+       orderStatus
+     }
+   })
+ }
+
+ export function ordersCheckDone(ids){
+   return axios.put('/orders/chenkDone',{
+     ids
+   })
+ }
+
+ export function ordersChenkOut(ids){
+   return axios.put('/orders/chenkOut',{
+     ids
+   })
+ }
+
+ export function ordersClose(ids){
+   return axios.put('/orders/close',{
+     ids
+   })
+ }
+
+ export function getOrderDetail(id){
+    return axios.get(`/orders/${id}`)
+ }
+
+ export function getUsersList()
